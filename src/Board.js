@@ -31,7 +31,7 @@ export default class Board extends React.Component{
         onClick={() => this.handleClick(i)} 
       />          
       
-      </React.Fragment> 
+      </React.Fragment>
     );
   }
 
@@ -40,7 +40,8 @@ export default class Board extends React.Component{
     const status = 'Next player: X';
 
     return (
-      <div>
+      <React.Fragment>
+        <div>
         <div className="status">{status}</div>
         <div className="board-row">
           {this.renderSquare(0)}{this.renderSquare(1)}{this.renderSquare(2)}
@@ -52,6 +53,8 @@ export default class Board extends React.Component{
           {this.renderSquare(6)}{this.renderSquare(7)}{this.renderSquare(8)}
         </div>
       </div>
+      <Game squares={this.state.squares}/>
+      </React.Fragment>
     );
   }
 }
@@ -69,19 +72,16 @@ class Square extends React.Component {
   }
 }
 
-
 class Game extends React.Component {
-  
-  game(){
-    const squares = this.state.squares.slice();
-    console.log(this.state.squares)
+
+  render() {
+    const squares = this.props.squares.slice();
 
     if(squares[0] === 'S'){
-      alert('You win')
+      console.log(squares);
+      console.log('You win');
     }
-  }
 
-  render() { 
     return <div></div>;
   }
 }
