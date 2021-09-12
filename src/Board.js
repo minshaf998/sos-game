@@ -37,7 +37,9 @@ export default class Board extends React.Component{
 
         
   render() {
-    const status = 'Next player: X';
+    let status = 'Next player: ';
+
+    status = this.state.isx == true ? status += 'S' : status += 'O';
 
     return (
       <React.Fragment>
