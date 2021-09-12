@@ -12,15 +12,18 @@ export default class Board extends React.Component{
   handleClick(i) {
     const squares = this.state.squares.slice();
 
-    if(this.state.isx){
-    squares[i] = 'S';}
-
-    else{
-        squares[i] = 'O';
+    if(this.state.squares[i] === null){
+      if(this.state.isx){
+        squares[i] = 'S';}
+    
+        else{
+            squares[i] = 'O';
+        }
+        
+        this.setState({squares: squares,isx: !this.state.isx });
+      }
     }
 
-    this.setState({squares: squares,isx: !this.state.isx });
-  }
   
   renderSquare(i) {
     return (
