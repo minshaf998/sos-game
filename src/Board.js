@@ -19,7 +19,7 @@ export default class Board extends React.Component{
         else{
             squares[i] = 'O';
         }
-        
+
         this.setState({squares: squares,isx: !this.state.isx });
       }
     }
@@ -81,12 +81,29 @@ class Game extends React.Component {
 
   render() {
     const squares = this.props.squares.slice();
+    console.log(squares);
+    const indexes = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+    let result = "";
 
-    if(squares[0] === 'S'){
-      console.log(squares);
-      console.log('You win');
+    indexes.forEach(element => {
+      if( squares[element[0]] === 'S' && squares[element[1]] === 'S' && squares[element[2]] === 'S'){
+        result = 'S Wins';
+        
+      }
+      else if( squares[element[0]] === 'O' && squares[element[1]] === 'O' && squares[element[2]] === 'O'){
+        result = 'O Wins';
+      }
+    });
+
+    if(squares[0] === 'S' || squares[0] === 'O'){
+      for (var i=0; i<squares.length; i++){
+        if(squares[i] !== null ){
+          break;
+        }
+        result = 'Draw';
+      }
     }
 
-    return <div></div>;
+    return <div><h1>{result}</h1></div>;
   }
 }
