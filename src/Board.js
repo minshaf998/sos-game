@@ -85,16 +85,16 @@ class Game extends React.Component {
     let result = "";
 
     indexes.forEach(element => {
-      if( squares[element[0]] === 'S' && squares[element[1]] === 'S' && squares[element[2]] === 'S'){
+      if( squares[element[0]] === 'S' && squares[element[1]] === 'S' && squares[element[2]] === 'S' && result !== 'O Wins'){
         result = 'S Wins';
         
       }
-      else if( squares[element[0]] === 'O' && squares[element[1]] === 'O' && squares[element[2]] === 'O'){
+      else if( squares[element[0]] === 'O' && squares[element[1]] === 'O' && squares[element[2]] === 'O' && result !== 'S Wins'){
         result = 'O Wins';
       }
     });
 
-    if(squares[0] === 'S' || squares[0] === 'O'){
+    if((squares[0] === 'S' || squares[0] === 'O') && result === ''){
       let allnull = false;
 
       for (var i=0; i<squares.length; i++){
@@ -103,7 +103,7 @@ class Game extends React.Component {
           break;
         }
       }
-      if(allnull === false){
+      if(allnull === false && (result !== 'S Wins' || result !== 'O Wins')){
         result = 'Draw';
       }
     }
