@@ -95,13 +95,19 @@ class Game extends React.Component {
     });
 
     if(squares[0] === 'S' || squares[0] === 'O'){
+      let allnull = false;
+
       for (var i=0; i<squares.length; i++){
-        if(squares[i] !== null ){
+        if(squares[i] === null ){
+          allnull = true;
           break;
         }
+      }
+      if(allnull === false){
         result = 'Draw';
       }
     }
+
 
     return <div><h1>{result}</h1></div>;
   }
