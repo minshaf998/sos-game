@@ -92,12 +92,15 @@ class Game extends React.Component {
 
     if(this.state.result === ''){
       indexes.forEach(element => {
+        // let result = this.state.result;
         if( squares[element[0]] === 'S' && squares[element[1]] === 'S' && squares[element[2]] === 'S'){
           this.state.result = 'S Wins';
+          // this.setState({result:result})
           
         }
         else if( squares[element[0]] === 'O' && squares[element[1]] === 'O' && squares[element[2]] === 'O'){
           this.state.result = 'O Wins';
+          // this.setState({result:result})
         }
       });
     }
@@ -113,6 +116,7 @@ class Game extends React.Component {
       }
       if(allnull === false && (this.state.result !== 'S Wins' || this.state.result !== 'O Wins')){
         this.state.result = 'Draw';
+        // this.setState({result:"result"})
       }
     }
 
