@@ -79,22 +79,30 @@ class Square extends React.Component {
 
 class Game extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      result : ''
+    };
+  }
+
   render() {
     const squares = this.props.squares.slice();
     const indexes = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-    let result = "";
 
-    indexes.forEach(element => {
-      if( squares[element[0]] === 'S' && squares[element[1]] === 'S' && squares[element[2]] === 'S' && result !== 'O Wins'){
-        result = 'S Wins';
-        
-      }
-      else if( squares[element[0]] === 'O' && squares[element[1]] === 'O' && squares[element[2]] === 'O' && result !== 'S Wins'){
-        result = 'O Wins';
-      }
-    });
+    if(this.state.result === ''){
+      indexes.forEach(element => {
+        if( squares[element[0]] === 'S' && squares[element[1]] === 'S' && squares[element[2]] === 'S'){
+          this.state.result = 'S Wins';
+          
+        }
+        else if( squares[element[0]] === 'O' && squares[element[1]] === 'O' && squares[element[2]] === 'O'){
+          this.state.result = 'O Wins';
+        }
+      });
+    }
 
-    if((squares[0] === 'S' || squares[0] === 'O') && result === ''){
+    if((squares[0] === 'S' || squares[0] === 'O') && this.state.result === ''){
       let allnull = false;
 
       for (var i=0; i<squares.length; i++){
@@ -103,12 +111,12 @@ class Game extends React.Component {
           break;
         }
       }
-      if(allnull === false && (result !== 'S Wins' || result !== 'O Wins')){
-        result = 'Draw';
+      if(allnull === false && (this.state.result !== 'S Wins' || this.state.result !== 'O Wins')){
+        this.state.result = 'Draw';
       }
     }
 
 
-    return <div><h1>{result}</h1></div>;
+    return <div><h1>{this.state.result}</h1></div>;
   }
 }
