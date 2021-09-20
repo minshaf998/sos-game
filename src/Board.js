@@ -93,8 +93,22 @@ function Game(props) {
       }
     }
 
-    if(allnull === false && (result !== 'S Wins' || result !== 'O Wins')){
-      setResult('Draw');
+    if(allnull === false){
+
+      if(result === ''){
+        indexes.forEach(element => {
+          if( squares[element[0]] === 'S' && squares[element[1]] === 'S' && squares[element[2]] === 'S'){
+            setResult('S Wins');          
+          }
+          else if( squares[element[0]] === 'O' && squares[element[1]] === 'O' && squares[element[2]] === 'O'){
+            setResult('O Wins');
+          }
+        });
+      }
+
+      else if(result !== 'S Wins' || result !== 'O Wins'){
+        setResult('Draw');
+      }
     }
   }
     
